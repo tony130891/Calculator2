@@ -1,6 +1,8 @@
 let num1;
 let operator;
 let num2;
+let display = document.querySelector('#inputBtn');
+let buttons = document.querySelectorAll('.op');
 
 function add (a, b) {
 return a + b
@@ -27,4 +29,10 @@ function operate (operator,num1, num2) {
         break;
  }
 }
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+         display.value = button.textContent;
+    })
+})
 
