@@ -1,9 +1,10 @@
-let num1;
-let operator;
-let num2;
-let display = document.querySelector('#inputBtn')
-let buttons = document.querySelectorAll('.op');
-let buttonsOp = document.querySelectorAll('.operator');
+let num1 = 0;
+let operator = "";
+let num2 = 0;
+const display = document.querySelector('#inputBtn')
+const buttons = document.querySelectorAll('.op');
+const buttonsOp = document.querySelectorAll('.operator');
+const equal = document.querySelector('.equal');
 
 function add (a, b) {
 return a + b
@@ -30,24 +31,23 @@ function operate (operator,num1, num2) {
  }
 }
 
-let displayVal;
-
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-       // num1 = button.textContent;
-       display.value = button.textContent;
-       if (num1 === undefined) {
-        num1 = button.textContent;
+       display.value += button.textContent;
+       if (operator.length === 0) {
+        num1 += button.textContent;
        } else {
-        num2 = button.textContent;
+        num2 += button.textContent;
        }
     })
 })
 
 buttonsOp.forEach((button) => {
     button.addEventListener('click', () => {
-        operator = button.textContent;
-        display.value = button.textContent;
+        display.value += button.textContent;
+        operator += button.textContent;
     })
 })
 
+equal.addEventListener('click', (operate));
+console.log(operate(num1, operator, num2));
