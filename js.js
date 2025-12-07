@@ -6,38 +6,37 @@ const buttons = document.querySelectorAll('.op');
 const buttonsOp = document.querySelectorAll('.operator');
 const equal = document.querySelector('.equal');
 
-function add (a, b) {
-return a + b
-}
-
-function subtract (a, b) {
-    return a - b
-}
-
-function multiply (a, b) {
-    return a * b
-}
-
-function divide (a, b) {
-        return a / b
-}
 
 function operate (operator,num1, num2) {
+    let result = 0;
  switch (operator) {
     case '+':
-        return add(num1, num2);
-        break;
+     result = (num1 + num2);
+    break;
+    case '-':
+     result = (num1 - num2);
+     break;
     default:
+    case '*':
+     result = (num1 * num2);
+     break;
+     case '/':
+     result = (num1 / num2);
+     break;
  }
+ return result
 }
+
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
        display.value += button.textContent;
        if (operator.length === 0) {
         num1 += button.textContent;
+        num1 = Number(num1);
        } else {
         num2 += button.textContent;
+        num2 = Number(num2);
        }
     })
 })
@@ -49,5 +48,6 @@ buttonsOp.forEach((button) => {
     })
 })
 
-equal.addEventListener('click', (operate));
-console.log(operate(num1, operator, num2));
+equal.addEventListener('click', () => {
+    display.value = operate(operator, num1, num2);
+})
