@@ -35,7 +35,7 @@ function operate (num1, operator, num2) {
  } else if (operator === '/') {
     result = divide(num1, num2);
  } else {
-    result = 'invalid operator';
+    result;
  }
  return result
 }
@@ -56,15 +56,32 @@ buttons.forEach((button) => {
     return num1, num2
 })
 
+
+
 buttonsOp.forEach((button) => {
     button.addEventListener('click', () => {
             display.value += button.textContent;
             operator += button.textContent;
+
+         if(operator.length > 1) {
+             operate(num1, operator[0], num2);
+             display.value = result;
+
+             num1 = result;
+             operator = operator[1];
+             result += operator
+             display.value = result;
+             num2 = "";
+         }
     })
     return operator
 })
 
+
+// TOFIX: Pressing = before entering all of the numbers or an operator could cause problems!
+
 equal.addEventListener('click', () => {
+   
    operate(num1, operator, num2);
    display.value = result;
 
@@ -72,4 +89,6 @@ equal.addEventListener('click', () => {
    operator = "";
    // num2
    num2 = "";
+
+
 });
