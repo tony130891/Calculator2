@@ -5,6 +5,7 @@ const display = document.querySelector('#inputBtn')
 const buttons = document.querySelectorAll('.op');
 const buttonsOp = document.querySelectorAll('.operator');
 const equal = document.querySelector('.equal');
+const keys = document.querySelector(".left");
 let result;
 
 
@@ -40,7 +41,6 @@ function operate (num1, operator, num2) {
  return result
 }
 
-
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
       if (operator.length === 0) {
@@ -55,7 +55,6 @@ buttons.forEach((button) => {
     })
     return num1, num2
 })
-
 
 
 buttonsOp.forEach((button) => {
@@ -77,9 +76,6 @@ buttonsOp.forEach((button) => {
     return operator
 })
 
-
-// TOFIX: Pressing = before entering all of the numbers or an operator could cause problems!
-
 equal.addEventListener('click', () => {
    
    operate(num1, operator, num2);
@@ -92,3 +88,20 @@ equal.addEventListener('click', () => {
 
 
 });
+
+TOFIX: REWRITE ALL THE CODE AND TURN THEM INTO FUNCTIONS SO I CAN CALL CERTAIN EVENT LISTENER AND ADD THE KEYBOARD FEATURE
+document.addEventListener('keydown', (e) => {
+   const key = e.key;
+
+   if (/\d/.test(key) && operator == "") {
+      display.value += key;
+      num1 = display.value;
+      num1 = Number(num1);
+   } else if (/[+\-*/]/.test(key) && operator.length < 1) {
+      display.value += key;
+      operator = key;
+   } else if (key === 'Enter') {
+
+   }
+   
+})
